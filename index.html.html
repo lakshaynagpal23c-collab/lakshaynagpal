@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lakshay Nagpal — Operations & Project Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-soft: #5a5a56;
+    --ink-faint: #9a9a94;
+    --paper: #f7f5f0;
+    --paper-warm: #ede9e0;
+    --accent: #c84b1f;
+    --accent-muted: #f0e8e2;
+    --teal: #1d7a6a;
+    --teal-light: #e0f0ec;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: var(--paper);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute;
+    top: 50%; right: -2rem;
+    transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-size: 22vw;
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(0,0,0,0.06);
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .hero-content { max-width: 700px; position: relative; z-index: 1; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 32px; height: 1.5px;
+    background: var(--accent);
+  }
+  .hero-name {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+  .hero-name span { color: var(--accent); }
+  .hero-tagline {
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem; }
+  .pill {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    background: var(--paper-warm);
+    color: var(--ink-soft);
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: 1.5px solid var(--accent);
+  }
+  .btn-primary:hover { background: #a63b14; border-color: #a63b14; }
+  .btn-outline {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid rgba(0,0,0,0.25);
+  }
+  .btn-outline:hover { border-color: var(--ink); }
+  .hero-stats {
+    display: flex; gap: 3rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--ink-faint);
+    margin-top: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* SECTION COMMON */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-faint);
+    margin-bottom: 1rem;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 24px; height: 1px;
+    background: var(--ink-faint);
+  }
+  h2.section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  .about { background: var(--paper-warm); }
+  .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: start; }
+  .about-text p { color: var(--ink-soft); margin-bottom: 1.2rem; font-size: 1.05rem; }
+  .about-text p strong { color: var(--ink); font-weight: 500; }
+  .about-side-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    padding: 1.8rem;
+  }
+  .about-side-card h4 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+  .cert-item {
+    display: flex; align-items: flex-start; gap: 0.7rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+  .cert-item:last-child { border-bottom: none; }
+  .cert-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .chess-badge {
+    margin-top: 1.2rem;
+    background: var(--teal-light);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    font-size: 0.85rem;
+    color: var(--teal);
+  }
+  .chess-badge strong { display: block; font-size: 1rem; margin-bottom: 0.2rem; color: var(--teal); }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), rgba(0,0,0,0.08));
+  }
+  .timeline-item { position: relative; padding-bottom: 3.5rem; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    position: absolute; left: -2rem; top: 6px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    transform: translateX(-5.5px);
+    border: 2px solid var(--paper);
+  }
+  .timeline-dot.muted {
+    background: var(--paper-warm);
+    border-color: var(--ink-faint);
+  }
+  .tl-meta {
+    display: flex; align-items: center; gap: 0.8rem;
+    margin-bottom: 0.4rem;
+  }
+  .tl-date {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .tl-company {
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--ink-faint);
+  }
+  .tl-role {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+  }
+  .tl-body { color: var(--ink-soft); font-size: 0.95rem; }
+  .tl-body ul { padding-left: 1.2rem; }
+  .tl-body li { margin-bottom: 0.5rem; }
+  .tl-highlight {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--accent-muted);
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.25rem 0.8rem;
+    border-radius: 100px;
+    margin-top: 0.8rem;
+    margin-right: 0.5rem;
+  }
+
+  /* SKILLS */
+  .skills { background: var(--paper-warm); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+  .skill-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .skill-card-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+  .skill-card h4 {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill-tag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 100px;
+    background: var(--paper-warm);
+    color: var(--ink-soft);
+    border: 1px solid rgba(0,0,0,0.07);
+  }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .edu-card {
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .edu-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+  }
+  .edu-year { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.5rem; }
+  .edu-degree { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.3rem; }
+  .edu-institute { font-size: 0.9rem; color: var(--ink-soft); }
+
+  /* CONTACT */
+  .contact { background: var(--ink); color: #fff; text-align: center; }
+  .contact .section-label { color: rgba(255,255,255,0.35); }
+  .contact .section-label::before { background: rgba(255,255,255,0.35); }
+  .contact h2.section-title { color: #fff; margin-bottom: 1rem; }
+  .contact-tagline { color: rgba(255,255,255,0.55); font-size: 1.05rem; margin-bottom: 2.5rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.8rem 1.6rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.4); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.3);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+
+  /* ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 800px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid, .edu-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-stats { gap: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">LN</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text" aria-hidden="true">LN</div>
+  <div class="hero-content reveal">
+    <div class="hero-eyebrow">Operations &amp; Project Manager</div>
+    <h1 class="hero-name">Lakshay<br /><span>Nagpal</span></h1>
+    <p class="hero-tagline">
+      Building high-performance operations with AI-driven automation, cross-functional leadership, and a data-first mindset. Based in New Delhi.
+    </p>
+    <div class="hero-pills">
+      <span class="pill">Ed-Tech</span>
+      <span class="pill">Education</span>
+      <span class="pill">Financial Services</span>
+      <span class="pill">5+ Years Experience</span>
+      <span class="pill">FIDE Rated Chess Player</span>
+    </div>
+    <div class="hero-cta">
+      <a href="mailto:lakshay.nagpal2303@gmail.com" class="btn btn-primary">Get in Touch</a>
+      <a href="https://linkedin.com/in/lakshaynagpal-operationmanager" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">25%</div>
+        <div class="stat-label">Drop Rate Reduced</div>
+      </div>
+      <div>
+        <div class="stat-num">₹3Cr+</div>
+        <div class="stat-label">Revenue Growth</div>
+      </div>
+      <div>
+        <div class="stat-num">50%</div>
+        <div class="stat-label">Cost Reduction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="reveal">
+    <div class="section-label">About</div>
+    <h2 class="section-title">Who I am</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>
+        I'm a results-driven <strong>Operations and Project Manager</strong> with over five years of experience spanning ed-tech, education, and financial services. I combine a strategic mindset with a bias for action — using AI-driven automation to turn complex workflows into efficient, scalable systems.
+      </p>
+      <p>
+        At <strong>upGrad Study Abroad</strong>, I led learning experience operations end-to-end — designing dashboards, optimising SOPs, and scaling university partnerships — contributing to a 25% reduction in learner drop rates and ₹3 Cr+ in annual revenue growth.
+      </p>
+      <p>
+        Previously at <strong>Physics Wallah</strong>, I directed K-8 content development, implemented AI tools to cut 3D production costs by 50%, and earned multiple Star Performer awards for cross-functional excellence.
+      </p>
+      <p>
+        Outside work, I'm a <strong>FIDE-rated chess player</strong> (Standard 1626 / Rapid 1661) with 15+ years of competitive experience — a discipline that sharpens my strategic thinking and pattern recognition on and off the board.
+      </p>
+    </div>
+    <div class="reveal">
+      <div class="about-side-card">
+        <h4>Certifications</h4>
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <div>Data Science &amp; Machine Learning<br /><span style="font-size:0.8rem;color:#aaa">IIT Delhi</span></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <div>Lean Six Sigma Green Belt<br /><span style="font-size:0.8rem;color:#aaa">KPMG</span></div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-dot"></div>
+          <div>Advanced Spreadsheets<br /><span style="font-size:0.8rem;color:#aaa">ICDL Asia</span></div>
+        </div>
+        <div class="chess-badge">
+          <strong>♟ FIDE Rated Chess Player</strong>
+          Standard 1626 · Rapid 1661 · 100+ Tournaments<br />
+          Winner, CBSE Chess North Zonal Tournament
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <div class="section-label">Career</div>
+    <h2 class="section-title">Professional experience</h2>
+  </div>
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="tl-meta">
+        <span class="tl-date">Nov 2024 – Present</span>
+        <span class="tl-company">upGrad Study Abroad</span>
+      </div>
+      <div class="tl-role">Manager, Learning Experience</div>
+      <div class="tl-body">
+        <ul>
+          <li>Led learning experience &amp; operations team ensuring 100% SLA compliance across onboarding, progression, and program completion.</li>
+          <li>Designed data-driven dashboards and automation tools to track learner engagement and identify early risks.</li>
+          <li>Scaled new university partnerships by building structured handover and reporting systems across six teams.</li>
+          <li>Drove collaboration with product and university teams to launch premium programs.</li>
+        </ul>
+        <span class="tl-highlight">↓ 25% Learner Drop Rate</span>
+        <span class="tl-highlight">↑ ₹3Cr+ Revenue Growth</span>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="tl-meta">
+        <span class="tl-date">Jul 2022 – Sep 2024</span>
+        <span class="tl-company">Physics Wallah (PW)</span>
+      </div>
+      <div class="tl-role">Manager</div>
+      <div class="tl-body">
+        <ul>
+          <li>Directed end-to-end K-8 learning material development aligned with NCERT and NEP standards.</li>
+          <li>Implemented AI-driven solutions to remove production bottlenecks, reducing 3D content costs by 50%.</li>
+          <li>Led cross-functional teams of SMEs, pedagogues, procurement, designers, and 3D teams under high-pressure schedules.</li>
+          <li>Spearheaded brand awareness initiatives including social media campaigns and academic events.</li>
+        </ul>
+        <span class="tl-highlight">↓ 50% 3D Content Cost</span>
+        <span class="tl-highlight">⭐ Star Performer ×3</span>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot muted"></div>
+      <div class="tl-meta">
+        <span class="tl-date">Jan 2022 – Jun 2022</span>
+        <span class="tl-company">Crejo.Fun</span>
+      </div>
+      <div class="tl-role">Program Manager / Curriculum Designer</div>
+      <div class="tl-body">
+        <ul>
+          <li>Trained and mentored 20+ chess facilitators to deliver interactive, high-quality lessons.</li>
+          <li>Designed and launched a new chess curriculum that increased weekly cohort sales by 50%.</li>
+        </ul>
+        <span class="tl-highlight">↑ 50% Cohort Sales</span>
+        <span class="tl-highlight">⭐ Best Facilitator Feb 2022</span>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot muted"></div>
+      <div class="tl-meta">
+        <span class="tl-date">Sep 2020 – Jan 2022</span>
+        <span class="tl-company">IDFC First Bank Ltd.</span>
+      </div>
+      <div class="tl-role">Recovery Manager</div>
+      <div class="tl-body">
+        <ul>
+          <li>Managed collections and debt recovery for a large portfolio, consistently exceeding recovery targets.</li>
+          <li>Led a team to reduce delinquency rates through strategic negotiations and structured resolution planning.</li>
+          <li>Generated comprehensive MIS and performance reports to support data-driven decision-making.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <div class="reveal">
+    <div class="section-label">Expertise</div>
+    <h2 class="section-title">Core skills</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">⚙️</div>
+      <h4>Operations</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Operations Management</span>
+        <span class="skill-tag">Project Delivery</span>
+        <span class="skill-tag">Process Optimisation</span>
+        <span class="skill-tag">SLA Management</span>
+        <span class="skill-tag">Workflow Automation</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">🤝</div>
+      <h4>Leadership</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Cross-functional Leadership</span>
+        <span class="skill-tag">Stakeholder Engagement</span>
+        <span class="skill-tag">University Partnerships</span>
+        <span class="skill-tag">Team Mentoring</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">📊</div>
+      <h4>Data &amp; Reporting</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">KPI Tracking</span>
+        <span class="skill-tag">Data Visualisation</span>
+        <span class="skill-tag">Dashboard Design</span>
+        <span class="skill-tag">MIS Reporting</span>
+        <span class="skill-tag">Risk Identification</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-card-icon">🛠️</div>
+      <h4>Technical</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Advanced Excel</span>
+        <span class="skill-tag">Google Sheets</span>
+        <span class="skill-tag">ChatGPT</span>
+        <span class="skill-tag">Midjourney</span>
+        <span class="skill-tag">DALL-E</span>
+        <span class="skill-tag">ElevenLabs</span>
+        <span class="skill-tag">Canva</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="reveal">
+    <div class="section-label">Academic</div>
+    <h2 class="section-title">Education</h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-year">2018 – 2020</div>
+      <div class="edu-degree">PGDM — Finance &amp; Marketing</div>
+      <div class="edu-institute">Institute of Management &amp; Technology, Hyderabad</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-year">2014 – 2017</div>
+      <div class="edu-degree">Bachelor of Commerce (B.Com)</div>
+      <div class="edu-institute">Delhi College of Arts &amp; Commerce, Delhi University</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="reveal">
+    <div class="section-label">Let's connect</div>
+    <h2 class="section-title">Get in touch</h2>
+    <p class="contact-tagline">Open to new opportunities, collaborations, and conversations.</p>
+    <div class="contact-links">
+      <a href="mailto:lakshay.nagpal2303@gmail.com" class="contact-link">✉ lakshay.nagpal2303@gmail.com</a>
+      <a href="tel:+919999183389" class="contact-link">📱 +91 99991 83389</a>
+      <a href="https://linkedin.com/in/lakshaynagpal-operationmanager" target="_blank" class="contact-link">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Lakshay Nagpal · New Delhi, India
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
